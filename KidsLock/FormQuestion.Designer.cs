@@ -197,6 +197,7 @@
             this.Name = "FormQuestion";
             this.ShowInTaskbar = false;
             this.Text = "FormQuestion";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuestion_FormClosing);
             this.Load += new System.EventHandler(this.FormQuestion_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormQuestion_Paint);
             this.ResumeLayout(false);

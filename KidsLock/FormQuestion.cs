@@ -22,6 +22,7 @@ namespace KidsLock
         {
             InitializeComponent();
             btnCancel.Location = new Point(100000, 100000);
+            Text = "Question";
 
             rand = new Random((int)Handle);
             btnAnswers = new Button[]
@@ -100,6 +101,7 @@ namespace KidsLock
 
         private void sleepForWhile()
         {
+            this.ControlBox = false;
             foreach (Control ctrl in Controls)
             {
                 if (ctrl is Button)
@@ -136,10 +138,19 @@ namespace KidsLock
                 }
                 createQuestion();
                 Text = "Question";
+                this.ControlBox = true;
             }
             else
             {
                 Text = string.Format("Question - Plase wait for {0} seconds", nSleepSeconds);
+            }
+        }
+
+        private void FormQuestion_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!btnCancel.Enabled)
+            {
+                e.Cancel = true;
             }
         }
     }
