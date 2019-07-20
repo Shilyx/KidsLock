@@ -15,6 +15,8 @@ namespace KidsLock
         private Random rand;
         private string strQuestion = string.Empty;
         private string strAnswer = string.Empty;
+        private int nSleepSeconds = 0;
+        private int nSleepPlanSeconds = 0;
 
         public FormQuestion()
         {
@@ -42,6 +44,8 @@ namespace KidsLock
             {
                 btn.Click += Btn_Click;
             }
+
+            timerSleep.Enabled = true;
         }
 
         private void Btn_Click(object sender, EventArgs e)
@@ -53,7 +57,7 @@ namespace KidsLock
             }
             else
             {
-                createQuestion();
+                sleepForWhile();
             }
         }
 
@@ -92,6 +96,51 @@ namespace KidsLock
             int nLeft = (int)(((float)Width - s.Width) / 2);
 
             e.Graphics.DrawString(strQuestion, Font, Brushes.Black, new Point(nLeft, 40));
+        }
+
+        private void sleepForWhile()
+        {
+            foreach (Control ctrl in Controls)
+            {
+                if (ctrl is Button)
+                {
+                    ctrl.Enabled = false;
+                }
+            }
+
+            if (nSleepPlanSeconds > 10)
+            {
+                nSleepSeconds = (nSleepPlanSeconds += 10);
+            }
+            else
+            {
+                nSleepSeconds = (nSleepPlanSeconds += 3);
+            }
+        }
+
+        private void timerSleep_Tick(object sender, EventArgs e)
+        {
+            if (nSleepSeconds <= 0)
+            {
+                return;
+            }
+
+            if (--nSleepSeconds == 0)
+            {
+                foreach (Control ctrl in Controls)
+                {
+                    if (ctrl is Button)
+                    {
+                        ctrl.Enabled = true;
+                    }
+                }
+                createQuestion();
+                Text = "Question";
+            }
+            else
+            {
+                Text = string.Format("Question - Plase wait for {0} seconds", nSleepSeconds);
+            }
         }
     }
 }
