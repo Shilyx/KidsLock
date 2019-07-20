@@ -20,5 +20,10 @@ namespace KidsLock
         {
             new FormQuestion().ShowDialog();
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            new FormLock().ShowDialog();
+        }
     }
 }
