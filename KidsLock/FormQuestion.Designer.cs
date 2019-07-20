@@ -196,6 +196,7 @@
             this.MinimizeBox = false;
             this.Name = "FormQuestion";
             this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormQuestion";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormQuestion_FormClosing);
             this.Load += new System.EventHandler(this.FormQuestion_Load);
