@@ -16,7 +16,7 @@ namespace KidsLock
         private string strQuestion = string.Empty;
         private string strAnswer = string.Empty;
         private int nSleepSeconds = 0;
-        private int nSleepPlanSeconds = 0;
+        private static int nSleepPlanSeconds = 0;
 
         public FormQuestion()
         {
@@ -53,6 +53,7 @@ namespace KidsLock
         {
             if ((sender as Control).Text == strAnswer)
             {
+                nSleepPlanSeconds = 0; // reset
                 DialogResult = DialogResult.OK;
                 Close();
             }
