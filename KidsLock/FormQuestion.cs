@@ -95,8 +95,14 @@ namespace KidsLock
         {
             SizeF s = e.Graphics.MeasureString(strQuestion, Font);
             int nLeft = (int)(((float)Width - s.Width) / 2);
+            Brush b = Brushes.Black;
 
-            e.Graphics.DrawString(strQuestion, Font, Brushes.Black, new Point(nLeft, 40));
+            if (!this.ControlBox)
+            {
+                b = Brushes.SlateGray;
+            }
+
+            e.Graphics.DrawString(strQuestion, Font, b, new Point(nLeft, 40));
         }
 
         private void sleepForWhile()
@@ -109,6 +115,8 @@ namespace KidsLock
                     ctrl.Enabled = false;
                 }
             }
+
+            Invalidate();
 
             if (nSleepPlanSeconds > 10)
             {
