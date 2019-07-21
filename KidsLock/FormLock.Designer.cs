@@ -46,6 +46,7 @@
             // 
             // timerCountDown
             // 
+            this.timerCountDown.Interval = 7;
             this.timerCountDown.Tick += new System.EventHandler(this.timerCountDown_Tick);
             // 
             // FormLock
@@ -64,6 +65,7 @@
             this.Text = "FormLock";
             this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.FormLock_Paint);
             this.ResumeLayout(false);
 
         }
